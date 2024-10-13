@@ -7,10 +7,7 @@ export const store = configureStore({
         [weatherApi.reducerPath]: weatherApi.reducer,
         city: citySlice,
     }),
-    middleware: getDefaultMiddleware =>
-        getDefaultMiddleware().concat(
-            weatherApi.middleware,
-        )
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(weatherApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
