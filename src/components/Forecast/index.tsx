@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-import { Spinner } from 'react-bootstrap';
+import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { weatherApi } from '../../service/weather';
 import { Forecast as ForecastType } from '../../service/weather/type';
@@ -12,26 +11,24 @@ export const Forecast = () => {
         skip: !city
     });
 
-    const itemJSX = data?.forecast?.forecastday.map((el: any) => {
-        return <div key={el?.date}>
-            <p>{el?.date}</p>
+    if (isError) return <></>;
 
-            <div className=''>
-                <img src={el?.day?.condition?.icon} alt={el?.day?.condition?.text} />
-                <div>
-                    <p>{el?.day?.mintemp_c}</p>
-                    <span>*C</span>
-                </div>
-                <div>
-                    <p>{el?.day?.maxtemp_c}</p>
-                    <span>*C</span>
-                </div>
+    const itemJSX = data?.forecast?.forecastday.map((el: any) => {
+        return <div className='grid justify-center gap-1 grow min-w-40 p-1.5 rounded-lg bg-white border-solid border-2 border-sky-100' key={el?.date}>
+            <p className='text-center text-zinc-400'>{format(new Date(el?.date), 'EEEE, MMM d')}</p>
+
+            <img className='m-auto size-16' src={el?.day?.condition?.icon} alt={el?.day?.condition?.text} />
+            <div className='flex gap-1.5 justify-center'>
+                <p className='text-gray-500 font-medium'>{el?.day?.mintemp_c}°C</p>
+                <p className='text-gray-950 font-medium'>{el?.day?.maxtemp_c}°C</p>
             </div>
         </div>;
     });
+
     return <>
-        {isError && <p className={classNames('fs-5')}>Something went wrong</p>}
-        {isLoading && <Spinner />}
-        {isSuccess && itemJSX}
+        {isLoading && <div className='spinner' />}
+        <div className='flex gap-2'>
+            {isSuccess && itemJSX}
+        </div>
     </>;
 };

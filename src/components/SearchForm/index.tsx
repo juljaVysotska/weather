@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
 import { addCity } from '../../store/reducer/citySlice';
 
@@ -9,22 +7,25 @@ export const SearchForm = () => {
     const [value, setValue] = useState<string>('');
 
     return <>
-        <Form onSubmit={(e) => {
+        <form onSubmit={(e) => {
             e.preventDefault();
+            if (!value) return;
+
             dispatch(addCity({
                 city: value
             }));
         }}>
-            <Row>
-                <Col md={9}>
-                    <Form.Control type='text' placeholder='Enter a city...' value={value} onChange={(value) => {
+            <div className='flex gap-2'>
+                <input
+                    className='grow text-base border-solid border-2 rounded-lg border-sky-100 p-1'
+                    type='text'
+                    placeholder='Enter a city...'
+                    value={value}
+                    onChange={(value) => {
                         setValue(value.target.value);
                     }} />
-                </Col>
-                <Col md={3}>
-                    <Button type='submit'>Search</Button>
-                </Col>
-            </Row>
-        </Form>
+                <button className='w-40 text-white rounded-lg bg-sky-500 hover:bg-sky-600 duration-300' type='submit'>Search</button>
+            </div>
+        </form>
     </>;
 };
