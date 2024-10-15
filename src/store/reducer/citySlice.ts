@@ -9,7 +9,7 @@ const citySlice = createSlice({
         addCity: (state, action) => {
             state.city = action.payload.city;
         },
-        deleteCity: (state, action) => {
+        deleteCity: (state) => {
             state.city = '';
         }
     }
