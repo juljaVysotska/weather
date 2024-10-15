@@ -3,25 +3,43 @@ name: Install packages & Lint
 on: [push]
 
 jobs:
-    install-packages:
-        name: Install packages & Lint work
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                node-version: 18
-            
-            - name: Install Dependency
-              run: npm ci
-            
-            - name: ESlint
-              run: | 
-                npm run lint
-                npm run lint:fix
+  install-packages:
+      name: Install packages & Lint work
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+          
+          - name: Set up Node.js
+            uses: actions/setup-node@v4
+            with:
+              node-version: 18
+          
+          - name: Install Dependency
+            run: npm ci
+          
+          - name: ESlint
+            run: | 
+              npm run lint:fix
+              npm run lint
 
-            - name: Prettier
-              run: npm run prettier
+          - name: Build Project
+            run: npm run build
+          
+          - name: Upload static files as artifact
+            id: deployment
+            uses: actions/upload-pages-artifact@v3 
+            with:
+              path: build
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: install-packages
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
