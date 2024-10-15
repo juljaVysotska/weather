@@ -18,10 +18,29 @@ jobs:
             - name: Install Dependency
               run: npm ci
             
+            - name: Cache node_modules
+              uses: actions/upload-artifact@v4
+              with: 
+                name: node
+                path: node_modules
+            
+            # - name: ESlint
+            #   run: | 
+            #     npm run lint
+            #     npm run lint:fix
+
+            # - name: Prettier
+            #   run: npm run prettier
+    eslint:
+        needs: install-packages
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download node_modules
+              uses: actions/download-artifact@v4
+              with:
+                name: node
             - name: ESlint
               run: | 
-                npm run lint
                 npm run lint:fix
+                npm run lint
 
-            - name: Prettier
-              run: npm run prettier
