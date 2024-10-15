@@ -39,6 +39,10 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 name: node
+            
+            - name: Checkout code
+              uses: actions/checkout@v4
+              
             - name: ESlint
               run: | 
                 npm run lint:fix
