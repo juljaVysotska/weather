@@ -25,7 +25,7 @@ jobs:
             
             - name: Deploy to production url
               # if you have different requirements for deployment suppose your main brach for production and you have another branch for development then you can use this branch option to deploy your project to different branches.
-              if: github.ref == 'refs/heads/main'
+              if: github.ref == 'refs/heads/master'
               # you can not change the name of this action.
               uses: JamesIves/github-pages-deploy-action@v4
               with:
