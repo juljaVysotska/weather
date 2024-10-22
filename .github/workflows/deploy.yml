@@ -29,7 +29,6 @@ jobs:
               # you can not change the name of this action.
               uses: JamesIves/github-pages-deploy-action@v4
               with:
-                folder: / # The folder the action should deploy.
-
+                folder: . # The folder the action should deploy.
             
               
