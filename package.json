@@ -29,8 +29,7 @@
     "lint": "npx eslint src/**/*.{ts,tsx}",
     "lint:fix": "npx eslint --fix src/**/*.{ts,tsx}",
     "prettier": "prettier --write src/**/*.{ts,tsx} --config ./.prettierrc.json",
-    "prepare": "husky",
-    "predeploy": "npm run build"
+    "prepare": "husky"
   },
   "eslintConfig": {
     "extends": [
