@@ -7,6 +7,7 @@ export const App = () => {
 
     useEffect(() => {
         getUserLocation();
+        // eslint-disable-next-line
     }, []);
 
     return (
