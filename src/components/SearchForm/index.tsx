@@ -31,7 +31,7 @@ export const SearchForm = () => {
                         }}
                     />
                     <button
-                        className='w-40 text-white rounded-lg bg-sky-500 hover:bg-sky-600 duration-300'
+                        className='w-20 md:w-40 text-white rounded-lg bg-sky-500 hover:bg-sky-600 duration-300'
                         type='submit'
                     >
                         Search

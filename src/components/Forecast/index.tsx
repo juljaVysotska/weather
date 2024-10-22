@@ -41,7 +41,7 @@ export const Forecast = () => {
     return (
         <>
             {isLoading && <div className='spinner' />}
-            <div className='flex gap-2'>{isSuccess && itemJSX}</div>
+            <div className='flex flex-wrap gap-2'>{isSuccess && itemJSX}</div>
         </>
     );
 };
