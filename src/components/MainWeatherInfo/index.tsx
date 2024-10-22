@@ -15,7 +15,7 @@ export const MainWeatherInfo = () => {
     } = weatherApi.useGetCurrentWeatherQuery(
         { query: query },
         {
-            skip: !query
+            skip: !query,
         },
     );
 

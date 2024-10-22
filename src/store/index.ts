@@ -7,7 +7,7 @@ export const store = configureStore({
     reducer: combineReducers({
         [weatherApi.reducerPath]: weatherApi.reducer,
         city: citySlice,
-        location: locationSlice
+        location: locationSlice,
     }),
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(weatherApi.middleware),
 });

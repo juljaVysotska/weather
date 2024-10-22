@@ -12,18 +12,20 @@ export const useLocation = () => {
     const getUserLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                (position) => {
+                position => {
                     const { latitude, longitude } = position.coords;
 
                     setUserLocation({ latitude, longitude });
                     dispatch(addCoordinates({ location: [latitude, longitude] }));
                 },
 
-                (error) => {
+                error => {
+                    // eslint-disable-next-line
                     console.error('Error get user location: ', error);
-                }
+                },
             );
         } else {
+            // eslint-disable-next-line
             console.error('Geolocation is not supported by this browser');
         }
     };
