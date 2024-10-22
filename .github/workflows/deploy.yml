@@ -28,7 +28,7 @@ jobs:
               if: github.ref == 'refs/heads/master'
               # you can not change the name of this action.
               uses: JamesIves/github-pages-deploy-action@v4
-              # with:
-              #   folder: build # The folder the action should deploy.
+              with:
+                folder: / # The folder the action should deploy.
             
               
