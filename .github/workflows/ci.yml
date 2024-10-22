@@ -1,6 +1,7 @@
 name: Install packages & Lint
 
-on: [push]
+on: 
+  push
 
 jobs:
     install-packages:
@@ -20,8 +21,5 @@ jobs:
             
             - name: ESlint
               run: | 
-                npm run lint
                 npm run lint:fix
-
-            - name: Prettier
-              run: npm run prettier
+                npm run lint
