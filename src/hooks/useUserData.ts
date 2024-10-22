@@ -3,7 +3,6 @@ import { citySelector } from '../store/reducer/citySlice';
 import { locationSelector } from '../store/reducer/locationSlice';
 
 export const useUserData = () => {
-
     const { city } = useSelector(citySelector);
     const { location } = useSelector(locationSelector);
 
