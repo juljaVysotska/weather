@@ -1,12 +1,11 @@
 import classNames from 'classnames';
 import { format } from 'date-fns';
-import { useSelector } from 'react-redux';
+import { useUserData } from '../../hooks/useUserData';
 import { weatherApi } from '../../service/weather';
 import { CurrentWeather } from '../../service/weather/type';
-import { citySelector } from '../../store/reducer/citySlice';
 
 export const MainWeatherInfo = () => {
-    const { city } = useSelector(citySelector);
+    const { query } = useUserData();
 
     const {
         data = {} as CurrentWeather,
@@ -14,9 +13,9 @@ export const MainWeatherInfo = () => {
         isError,
         isSuccess,
     } = weatherApi.useGetCurrentWeatherQuery(
-        { query: city },
+        { query: query },
         {
-            skip: !city,
+            skip: !query
         },
     );
 

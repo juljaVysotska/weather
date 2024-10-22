@@ -1,11 +1,10 @@
 import { format } from 'date-fns';
-import { useSelector } from 'react-redux';
+import { useUserData } from '../../hooks/useUserData';
 import { weatherApi } from '../../service/weather';
 import { Forecast as ForecastType } from '../../service/weather/type';
-import { citySelector } from '../../store/reducer/citySlice';
 
 export const Forecast = () => {
-    const { city } = useSelector(citySelector);
+    const { query } = useUserData();
 
     const {
         data = {} as ForecastType,
@@ -13,9 +12,9 @@ export const Forecast = () => {
         isError,
         isSuccess,
     } = weatherApi.useGetWeatherForecastQuery(
-        { query: city },
+        { query: query },
         {
-            skip: !city,
+            skip: !query,
         },
     );
 
