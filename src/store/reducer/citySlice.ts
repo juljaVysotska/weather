@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState: { city: string | null; } = {
+    city: ''
+};
 const citySlice = createSlice({
     name: 'city',
-    initialState: {
-        city: process.env.REACT_APP_DEFAULT_CITY
-    },
+    initialState,
     reducers: {
         addCity: (state, action) => {
             state.city = action.payload.city;
